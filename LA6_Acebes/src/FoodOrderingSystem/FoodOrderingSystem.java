@@ -21,38 +21,28 @@ public class FoodOrderingSystem extends JFrame {
     public FoodOrderingSystem() {
         JRadioButton[] discounts = {noneRadioButton, a5OffRadioButton, a10OffRadioButton, a15OffRadioButton};
         JCheckBox[] foodchoice = {pizzaCheckBox, burgerCheckBox, friesCheckBox, softDrinksCheckBox, teaCheckBox, sundaeCheckBox};
+        int[] prices = {100, 80, 65, 55, 50, 40};
         Order.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                double total=0;
-                if(pizzaCheckBox.isSelected()) {
-                    total += 100;
-                }
-                if(burgerCheckBox.isSelected()) {
-                    total += 80;
-                }
-                if(friesCheckBox.isSelected()) {
-                    total += 65;
-                }
-                if(softDrinksCheckBox.isSelected()) {
-                    total += 55;
-                }
-                if(teaCheckBox.isSelected()) {
-                    total += 50;
-                }
-                if(sundaeCheckBox.isSelected()) {
-                    total += 40;
+                double total = 0;
+
+                for (int i = 0; i < foodchoice.length; i++) {
+                    if (foodchoice[i].isSelected()) {
+                        total += prices[i];
+                    }
                 }
 
-                if(a5OffRadioButton.isSelected()) {
-                    total = total - (total * 0.05);
+                int discountPercentage = 0;
+                if (a5OffRadioButton.isSelected()) {
+                    discountPercentage = 5;
+                } else if (a10OffRadioButton.isSelected()) {
+                    discountPercentage = 10;
+                } else if (a15OffRadioButton.isSelected()) {
+                    discountPercentage = 15;
                 }
-                if(a10OffRadioButton.isSelected()) {
-                    total = total - (total * 0.10);
-                }
-                if(a15OffRadioButton.isSelected()) {
-                    total = total - (total * 0.15);
-                }
+
+                total -= total * discountPercentage / 100;
 
                 JOptionPane.showMessageDialog(null, "The total price is Php " + String.format("%.2f", total));
             }
@@ -68,3 +58,4 @@ public class FoodOrderingSystem extends JFrame {
         app.setVisible(true);
     }
 }
+

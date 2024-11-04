@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 public class SimpleCalculator extends JFrame {
     private JTextField tfNumber1;
-    private JComboBox cbOperations;
+    private JComboBox<String> cbOperations;
     private JTextField tfNumber2;
     private JButton btnCompute;
     private JPanel MainPanel;
@@ -54,8 +54,8 @@ public class SimpleCalculator extends JFrame {
 
     public static void main(String[] args) {
         SimpleCalculator app = new SimpleCalculator();
-        app.setTitle("Simple Calculator");
         app.setContentPane(app.MainPanel);
+        app.setTitle("Simple Calculator");
         app.setSize(600, 400);
         app.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         app.setVisible(true);
