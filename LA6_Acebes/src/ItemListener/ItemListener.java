@@ -47,10 +47,11 @@ public class ItemListener extends JFrame {
 
     public static void main(String[] args) {
         ItemListener app = new ItemListener();
-        app.setTitle("Food Ordering System");
+        app.setTitle("Item Listener");
         app.setContentPane(app.MainPanel);
         app.setSize(400, 450);
         app.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         app.setVisible(true);
+        app.setResizable(false);
     }
 }

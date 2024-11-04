@@ -50,6 +50,7 @@ public class FoodOrderingSystem extends JFrame {
         app.setSize(350, 450);
         app.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         app.setVisible(true);
+        app.setResizable(false);
     }
 }
 
