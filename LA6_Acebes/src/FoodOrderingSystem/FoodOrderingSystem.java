@@ -1,8 +1,6 @@
 package FoodOrderingSystem;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class FoodOrderingSystem extends JFrame {
     private JCheckBox pizzaCheckBox;
@@ -19,33 +17,29 @@ public class FoodOrderingSystem extends JFrame {
     private JPanel MainPanel;
 
     public FoodOrderingSystem() {
-        JRadioButton[] discounts = {noneRadioButton, a5OffRadioButton, a10OffRadioButton, a15OffRadioButton};
         JCheckBox[] foodchoice = {pizzaCheckBox, burgerCheckBox, friesCheckBox, softDrinksCheckBox, teaCheckBox, sundaeCheckBox};
         int[] prices = {100, 80, 65, 55, 50, 40};
-        Order.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                double total = 0;
+        Order.addActionListener(e -> {
+            double total = 0;
 
-                for (int i = 0; i < foodchoice.length; i++) {
-                    if (foodchoice[i].isSelected()) {
-                        total += prices[i];
-                    }
+            for (int i = 0; i < foodchoice.length; i++) {
+                if (foodchoice[i].isSelected()) {
+                    total += prices[i];
                 }
-
-                int discountPercentage = 0;
-                if (a5OffRadioButton.isSelected()) {
-                    discountPercentage = 5;
-                } else if (a10OffRadioButton.isSelected()) {
-                    discountPercentage = 10;
-                } else if (a15OffRadioButton.isSelected()) {
-                    discountPercentage = 15;
-                }
-
-                total -= total * discountPercentage / 100;
-
-                JOptionPane.showMessageDialog(null, "The total price is Php " + String.format("%.2f", total));
             }
+
+            int discountPercentage = 0;
+            if (a5OffRadioButton.isSelected()) {
+                discountPercentage = 5;
+            } else if (a10OffRadioButton.isSelected()) {
+                discountPercentage = 10;
+            } else if (a15OffRadioButton.isSelected()) {
+                discountPercentage = 15;
+            }
+
+            total -= total * discountPercentage / 100;
+
+            JOptionPane.showMessageDialog(null, "The total price is Php " + String.format("%.2f", total));
         });
     }
 

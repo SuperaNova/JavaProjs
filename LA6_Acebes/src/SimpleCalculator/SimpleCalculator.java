@@ -1,8 +1,6 @@
 package SimpleCalculator;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class SimpleCalculator extends JFrame {
     private JTextField tfNumber1;
@@ -19,35 +17,32 @@ public class SimpleCalculator extends JFrame {
         btnCompute.setName("btnCompute");
         lblResult.setName("lblResult");
 
-        btnCompute.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        btnCompute.addActionListener(e -> {
 
-                try {
-                    double x = Double.parseDouble(tfNumber1.getText());
-                    double y = Double.parseDouble(tfNumber2.getText());
-                    double res = 0;
-                    switch (cbOperations.getSelectedIndex()) {
-                        case 0:
-                            res = x+y;
-                            break;
-                        case 1:
-                            res = x-y;
-                            break;
-                        case 2:
-                            res = x*y;
-                            break;
-                        case 3:
-                            if(y == 0) throw new ArithmeticException();
-                            res = x/y;
-                            break;
-                    }
-                    lblResult.setText(String.format("%.2f", res));
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null, "Enter proper number inputs!");
-                } catch (ArithmeticException ex) {
-                    JOptionPane.showMessageDialog(null, "Cannot divide by zero!");
+            try {
+                double x = Double.parseDouble(tfNumber1.getText());
+                double y = Double.parseDouble(tfNumber2.getText());
+                double res = 0;
+                switch (cbOperations.getSelectedIndex()) {
+                    case 0:
+                        res = x+y;
+                        break;
+                    case 1:
+                        res = x-y;
+                        break;
+                    case 2:
+                        res = x*y;
+                        break;
+                    case 3:
+                        if(y == 0) throw new ArithmeticException();
+                        res = x/y;
+                        break;
                 }
+                lblResult.setText(String.format("%.2f", res));
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Enter proper number inputs!");
+            } catch (ArithmeticException ex) {
+                JOptionPane.showMessageDialog(null, "Cannot divide by zero!");
             }
         });
     }

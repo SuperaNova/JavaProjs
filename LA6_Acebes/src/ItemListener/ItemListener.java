@@ -1,7 +1,6 @@
 package ItemListener;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
@@ -20,33 +19,23 @@ public class ItemListener extends JFrame {
 
     public ItemListener() {
         ArrayList<String> chosenLang = new ArrayList<>();
-        JCheckBox[] languageBox = {cCheckBox, cppCheckBox, cSharpCheckBox, javaCheckBox, pythonCheckBox};
 
-        proficiencyComboBox.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                proficiencyLabel.setText("Proficiency: " + proficiencyComboBox.getSelectedItem());
+        proficiencyComboBox.addActionListener(e -> proficiencyLabel.setText("Proficiency: " + proficiencyComboBox.getSelectedItem()));
+
+        ActionListener listener = e -> {
+            JCheckBox genericBox = (JCheckBox)e.getSource();
+            if (genericBox.isSelected()) {
+                chosenLang.add(genericBox.getText());
             }
-        });
-
-        ActionListener listener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JCheckBox genericBox = (JCheckBox)e.getSource();
-                if (genericBox.isSelected()) {
-                    chosenLang.add(genericBox.getText());
-                }
-                if (!genericBox.isSelected()) {
-                    chosenLang.remove(genericBox.getText());
-                }
-
-                boolean choseFirst = false;
-                StringBuilder favLang = new StringBuilder("My Favorite Languages: ");
-                if(!chosenLang.isEmpty()) {
-                    favLang.append(String.join(", ", chosenLang));
-                }
-                languageLabel.setText(favLang.toString());
+            if (!genericBox.isSelected()) {
+                chosenLang.remove(genericBox.getText());
             }
+
+            StringBuilder favLang = new StringBuilder("My Favorite Languages: ");
+            if(!chosenLang.isEmpty()) {
+                favLang.append(String.join(", ", chosenLang));
+            }
+            languageLabel.setText(favLang.toString());
         };
 
         cCheckBox.addActionListener(listener);
